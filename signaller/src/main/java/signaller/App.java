@@ -5,9 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import signaller.model.Model;
 
 import java.io.IOException;
-import java.util.HashSet;
 
 /**
  * JavaFX App
@@ -15,12 +15,18 @@ import java.util.HashSet;
 public class App extends Application {
 
     private static Scene scene;
+    private static Model model;
+    private static FXMLLoader fxmlLoader;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 1280, 720);
+        scene = new Scene(loadFXML("primary"), 1600, 900);
         stage.setScene(scene);
         stage.show();
+        model = new Model();
+        PrimaryController controller = fxmlLoader.getController();
+        controller.setModel(model);
+
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -28,19 +34,11 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
     public static void main(String[] args) {
-        // launch();
-        //make new blocks and populate blockSet
-        HashSet<Block> blockSet = new HashSet<>();
-        BlockGenerator blockGen = new BlockGenerator();
-        blockSet = blockGen.generateBlocks(5);
-        for (Block block : blockSet) {
-            System.out.println(block.getId());
-        }
-        //function to show blocks
+        launch();
     }
 }
