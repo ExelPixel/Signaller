@@ -6,30 +6,32 @@ import java.util.Objects;
 
 public class Block {
     
-    private final int id;
+    private final Integer id;
     private final int stationId;
     private final int routeId;
     private Map<Block, String> neighbors; //LEFT, RIGHT, UPRIGHT, UPLEFT / Block object
     private boolean occupied = false;
-    private String nextDirection;
 
-    public Block(int id, int routeId, int stationId, String direction) {
+    public Block(int id, int routeId, int stationId) {
         this.id = Objects.requireNonNull(id);
         this.routeId = Objects.requireNonNull(routeId);
         this.stationId = stationId;
-        this.nextDirection = direction;
         this.neighbors = new HashMap<Block, String>();
     }
 
-    public void addNeighbor(Block nextBlock) {
+    public void addNeighbor(Block nextBlock, String nextDirection) {
         neighbors.put(nextBlock, nextDirection);
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public String getNextDirection() {
-        return nextDirection;
+    public Map<Block, String> getNeighbors() {
+        return neighbors;
+    }
+
+    public boolean isOccupied() {
+        return occupied;
     }
 }

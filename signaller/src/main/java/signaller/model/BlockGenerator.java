@@ -9,6 +9,7 @@ public class BlockGenerator {
     private HashSet<Integer> ids;
     private final Random rand;
     private final List<String> directions;
+    private Block firstBlock;
 
     public BlockGenerator() {
         ids = new HashSet<>();
@@ -20,12 +21,13 @@ public class BlockGenerator {
         HashSet<Block> blocks = new HashSet<>();
         String prevDirection = "RIGHT";
         String nextDirection = "";
-        Block previousBlock = new Block(getValidId(), 0, 0, prevDirection);;
+        Block previousBlock = new Block(getValidId(), 0, 0);
+        firstBlock = previousBlock;
 
         for (int i = 0; i < amount ; i++) {
             nextDirection = getNextDirection(prevDirection);
-            Block nextBlock = new Block(getValidId(), 0, 0, nextDirection);
-            previousBlock.addNeighbor(nextBlock);
+            Block nextBlock = new Block(getValidId(), 0, 0);
+            previousBlock.addNeighbor(nextBlock, nextDirection);
             blocks.add(nextBlock);
             previousBlock = nextBlock;
             prevDirection = nextDirection;
@@ -77,5 +79,9 @@ public class BlockGenerator {
                 continue;
             }
         }
+    }
+
+    public Block getFirstBlock() {
+        return firstBlock;
     }
 }
