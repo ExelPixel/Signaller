@@ -26,7 +26,6 @@ public class App extends Application {
         model = new Model();
         PrimaryController controller = fxmlLoader.getController();
         controller.setModel(model);
-
     }
 
     static void setRoot(String fxml) throws IOException {

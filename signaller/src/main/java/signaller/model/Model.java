@@ -6,6 +6,8 @@ public class Model {
     
     private boolean debug;
     private HashSet<Block> blockSet;
+    private Block firstBlock;
+
     private final BlockGenerator blockGen;
 
     public Model() {
@@ -15,7 +17,8 @@ public class Model {
     }
 
     public void initializeRailway() {
-        blockSet = blockGen.generateBlocks(15);
+        blockSet = blockGen.generateBlocks(500);
+        firstBlock = blockGen.getFirstBlock();
 
         if (debug) {
             for (Block block : blockSet) {
@@ -26,6 +29,10 @@ public class Model {
 
     public HashSet<Block> getBlockset() {
         return blockSet;
+    }
+
+    public Block getFirstBlock() {
+        return firstBlock;
     }
 
     public void changeDebugMode() {
