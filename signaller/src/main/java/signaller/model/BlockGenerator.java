@@ -36,7 +36,7 @@ public class BlockGenerator {
     }
 
     private void buildStraightRoute(int amount) {
-        // TODO
+        
     }
 
     private void buildPassingLoopStation() {
@@ -48,25 +48,10 @@ public class BlockGenerator {
     }
 
     private String getNextDirection(String prevDirection) {
-        int currentIndex = directions.indexOf(prevDirection);
-        String direction;
-        int randIndex;
-        
-        while (true) {
-            randIndex = rand.nextInt(8);
-            if (randIndex == currentIndex) {
-                continue;
-            } else {
-                break;
-            }
-        }
+        int current = directions.indexOf(prevDirection);
+        int roll = rand.nextInt(10);
 
-        if (randIndex > currentIndex) {
-            direction = directions.get(currentIndex + 1);
-        } else {
-            direction = directions.get(currentIndex - 1);
-        }
-        return direction;
+        return directions.get();
     }
 
     private int getValidId() {
